@@ -22,8 +22,6 @@ public class EditGestureActivity extends AppCompatActivity implements View.OnCli
         setContentView(R.layout.activity_edit_gesture);
         initView();
         initGestureOverlayView();
-
-
     }
 
     private void initGestureOverlayView() {
@@ -43,6 +41,7 @@ public class EditGestureActivity extends AppCompatActivity implements View.OnCli
 
             @Override
             public void onGestureEnded(GestureOverlayView overlay, MotionEvent event) {
+                //获取修改后的手势
                 mGesture = overlay.getGesture();
             }
 

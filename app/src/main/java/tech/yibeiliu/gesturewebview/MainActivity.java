@@ -37,23 +37,33 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initGestureOverlay() {
+        //从 raw 文件夹里取出我们预制的手势文件
         mGestureLib = GestureManager.getInstance(getBaseContext()).getGestureLib();
+        //设置笔画为单笔，也就是一笔画
         mGestureview.setGestureStrokeType(GestureOverlayView.GESTURE_STROKE_TYPE_SINGLE);
-
+        //画完笔画后到消失的间隔
         mGestureview.setFadeOffset(0);
+        //笔画粗细
         mGestureview.setGestureStrokeWidth(15);
+        //重点啊啊啊，设置 GestureOverlayView 不拦截触摸事件，
+        // 不设置的话，webview 是没法相应我们的滑动事件的
         mGestureview.setEventsInterceptionEnabled(false);
-
+        //精髓接口，通过他我们可以判断用户的手势是不是我们想接收的手势
         mGestureview.addOnGesturePerformedListener(new GestureOverlayView.OnGesturePerformedListener() {
             @Override
             public void onGesturePerformed(GestureOverlayView overlay,
                                            Gesture gesture) {
+                //recognize()方法接收用户的手势，并返回手势库中和该手势相匹配的手势
                 ArrayList<Prediction> predictions = mGestureLib
                         .recognize(gesture);
                 if (predictions.size() > 0) {
+                    //我们取最最相似的那个手势
+                    //prediction 里面就是我们预制的 手势名称 和 相匹配的分值 两个变量
                     Prediction prediction = (Prediction) predictions.get(0);
+                    //如果分数大于 1.0 并且 匹配出来的手势名称是我们预制的 “back” 字符串
                     if (prediction.score > 1.0 && prediction.name.equals("back")) {
                         if (mWebview.canGoBack()) {
+                            //webview 回退上一级
                             mWebview.goBack();
                         } else {
                             Toast.makeText(MainActivity.this, "已经是首页啦", Toast.LENGTH_SHORT).show();

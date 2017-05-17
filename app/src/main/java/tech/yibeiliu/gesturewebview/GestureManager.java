@@ -8,7 +8,7 @@ import android.gesture.GestureOverlayView;
 import android.widget.Toast;
 
 /**
- * Created by LiuPeiyi on 2017/05/17.
+ * Created by YiBeiLiu on 2017/05/17.
  */
 
 public class GestureManager {
@@ -39,8 +39,12 @@ public class GestureManager {
     public GestureLibrary getGestureLib() {
         return mGestureLib;
     }
+
     public void changeBackGesture(Gesture gesture){
+        //把 back 对应的手势更改一下
         mGestureLib.removeEntry("back");
+        //你也可以 mGestureLib.addGesture("XXX", gesture);
+        //添加一个名为 XXX 的手势
         mGestureLib.addGesture("back", gesture);
         Toast.makeText(mContext, "成功了，快去试试吧", Toast.LENGTH_SHORT).show();
     }
