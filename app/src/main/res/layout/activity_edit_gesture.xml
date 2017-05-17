@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="tech.yibeiliu.gesturewebview.EditGestureActivity">
+
+    <TextView
+        android:id="@+id/textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="画一个后退的手势吧"
+        android:textSize="20sp" />
+
+    <android.gesture.GestureOverlayView
+        android:id="@+id/editoverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gestureColor="@color/colorAccent"
+        android:uncertainGestureColor="@color/colorAccent" />
+
+    <Button
+        android:id="@+id/done"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:text="OK" />
+
+</RelativeLayout>
